@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Spring Boot Thymeleaf Hello World Example</title>
+
+    <link rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+
+</head>
+<body>
+<p>Test</p>
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Symptom</th>
+        <th>Nutrient</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="symptom : ${symptoms}">
+        <td th:text="${symptom.id}"></td>
+        <td th:text="${symptom.Symptom}"></td>
+        <td th:text="${symptom.Nutrient}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
