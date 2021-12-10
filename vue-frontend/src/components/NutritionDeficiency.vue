@@ -6,20 +6,19 @@
             <table class = "table table-striped">
                 <thead>
                     <tr>
-                        <th> Id</th>
+                        <th><input type="checkbox" class="checkbox" :checked="allSelected" @click="selectAll"/></th>
                         <th> Symptom </th>
-                        <th> Nutrient </th>
                     </tr>
-
                 </thead>
                 <tbody>
                     <tr v-for="symptom in symptoms" v-bind:key="symptom.id">
-                        <td> {{symptom.id }}</td>
+                        <td><input type="checkbox" class="checkbox" :value="symptom.symptom" v-model="selected"/></td>
                         <td> {{symptom.symptom }}</td>
-                        <td> {{symptom.nutrient}}</td>
                     </tr>
                 </tbody>
             </table>
+            <p>{{selected}}</p>
+            <button v-on:click="submit">Submit</button>
         </div>
 </template>
 
@@ -31,7 +30,8 @@ export default {
     name: 'Symptoms',
     data(){
         return {
-            symptoms: []
+            symptoms: [],
+            selected: []
         }
     },
     methods: {
@@ -39,6 +39,10 @@ export default {
             SymptomService.getSymptoms().then((response) => {
                 this.symptoms = response.data;
             });
+        },
+        submit() {
+            alert("value selected");
+            console.log(this.selected);
         }
     },
     created() {

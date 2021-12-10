@@ -17,4 +17,12 @@ public class NutritionDeficiencyService implements INutritionDeficiencyService {
         System.out.println(nutritionDeficiencyRepository.findAll());
         return (List<NutritionDeficiencyModel>) nutritionDeficiencyRepository.findAll();
     }
+
+    @Override
+    public List<String> findNutrientsfromSymptoms(List<String> values) {
+        for(int i = 0; i< values.size();i++) {
+            System.out.println(nutritionDeficiencyRepository.findNutrientsFromSymmptom(values.get(i)));
+        }
+        return values;
+    }
 }
