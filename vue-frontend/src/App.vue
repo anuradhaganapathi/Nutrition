@@ -1,16 +1,17 @@
 <template>
-  <div id="app">
-    <NutritionDeficiency />
-  </div>
+   <div id="nav">
+      <router-link to="/">HelloWorld</router-link>
+    </div>
+    <router-view/>
 </template>
 
 <script>
-import NutritionDeficiency from './components/NutritionDeficiency.vue'
+import HelloWorld from './components/HelloWorld.vue';
 
 export default {
   name: 'App',
   components: {
-    NutritionDeficiency
+  HelloWorld
   }
 }
 </script>
