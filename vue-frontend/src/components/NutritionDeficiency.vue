@@ -31,7 +31,8 @@ export default {
     data(){
         return {
             symptoms: [],
-            selected: []
+            selected: [],
+            singleValue: String
         }
     },
     methods: {
@@ -42,8 +43,10 @@ export default {
         },
         submit() {
             alert("value selected");
-            console.log(this.selected);
-        }
+            this.singleValue = this.selected[0];
+            console.log("selected value",this.singleValue);
+            this.$router.push("/symptomlist?" + this.singleValue);
+        },
     },
     created() {
         this.getSymptoms();

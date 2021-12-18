@@ -23,4 +23,16 @@ public class NutritionDeficiencyController {
         model.addAttribute("symptoms",symptoms);
         return symptoms;
     }
+
+    /*public List<NutritionDeficiencyModel> findNutrientBySymptoms(Model model) {
+        var nutrients = iNutritionDeficiencyService.findNutrientsfromSymptoms((List<String>) model.getAttribute("selected")));
+
+    }*/
+
+    @GetMapping("symptomlist/{symptom}")
+    public List<String> findNutrientBySymptom(@PathVariable String symptom) {
+        var nutrients = iNutritionDeficiencyService.findNutrientsfromSymptoms(symptom);
+        System.out.println(nutrients);
+        return nutrients;
+    }
 }
