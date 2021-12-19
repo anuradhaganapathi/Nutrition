@@ -18,27 +18,27 @@ public class NutritionDeficiencyModel {
     }
 
     public String getSymptom() {
-        return Symptom;
+        return symptom;
     }
 
     public void setSymptom(String symptom) {
-        Symptom = symptom;
+        this.symptom = symptom;
     }
 
     public String getNutrient() {
-        return Nutrient;
+        return nutrient;
     }
 
     public void setNutrient(String nutrient) {
-        Nutrient = nutrient;
+        this.nutrient = nutrient;
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    private String Symptom;
+    private String symptom;
 
-    private String Nutrient;
+    private String nutrient;
 
 }
