@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @RestController
 public class NutritionDeficiencyController {
@@ -24,13 +27,18 @@ public class NutritionDeficiencyController {
     }
 
     @GetMapping("symptomlist/symptom")
-    public List<String> getNutrientsBySymptom(@RequestParam String symptom) {
+    public List<String> getNutrientsBySymptom(@RequestParam List<String> symptom) {
         List<String> nutrientsList = new java.util.ArrayList<>(List.of());
         System.out.println("Symptom selected" + symptom);
-        var nutrients = (List<NutritionDeficiencyModel>) nutritionDeficiencyRepository.findBySymptom(symptom);
-        nutrients.forEach(nutrient -> nutrientsList.add(nutrient.getNutrient()));
+        for (String s : symptom) {
+            var nutrients = (List<NutritionDeficiencyModel>) nutritionDeficiencyRepository.findBySymptom(s);
+            nutrients.forEach(nutrient -> nutrientsList.add(nutrient.getNutrient()));
+        }
         nutrientsList.forEach(System.out::println);
-
+        Map<String, Long> nutrientsCount = nutrientsList.stream().collect(Collectors.groupingBy(Function.identity(),Collectors.counting()));
+        for(Map.Entry<String, Long> obj: nutrientsCount.entrySet()) {
+            System.out.println(obj.getKey() + ":" + obj.getValue());
+        }
         return nutrientsList;
     }
 }
