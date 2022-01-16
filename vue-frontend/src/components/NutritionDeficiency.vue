@@ -17,7 +17,6 @@
                     </tr>
                 </tbody>
             </table>
-            <p>{{selected}}</p>
             <button v-on:click="submit">Submit</button>
         </div>
 </template>
@@ -40,10 +39,9 @@ export default {
             });
         },
         submit() {
-            alert("value selected");
             this.singleValue = this.selected[0];
-            console.log("selected value",this.singleValue);
-            this.$router.push("/symptomlist?" + this.singleValue);
+            this.$router.push({path:'/symptomlist/symptom', query:{symptom: this.selected}});
+
         },
     },
     created() {

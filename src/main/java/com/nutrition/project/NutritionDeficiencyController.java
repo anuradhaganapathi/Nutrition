@@ -27,7 +27,8 @@ public class NutritionDeficiencyController {
     }
 
     @GetMapping("symptomlist/symptom")
-    public List<String> getNutrientsBySymptom(@RequestParam List<String> symptom) {
+    public Map<String,Long> getNutrientsBySymptom(@RequestParam List<String> symptom) {
+        System.out.println("Entrs here");
         List<String> nutrientsList = new java.util.ArrayList<>(List.of());
         System.out.println("Symptom selected" + symptom);
         for (String s : symptom) {
@@ -39,6 +40,6 @@ public class NutritionDeficiencyController {
         for(Map.Entry<String, Long> obj: nutrientsCount.entrySet()) {
             System.out.println(obj.getKey() + ":" + obj.getValue());
         }
-        return nutrientsList;
+        return nutrientsCount;
     }
 }

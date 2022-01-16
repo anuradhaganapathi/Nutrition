@@ -14,7 +14,6 @@ public class NutritionDeficiencyService implements INutritionDeficiencyService {
 
     @Override
     public List<NutritionDeficiencyModel> findAll() {
-        System.out.println(nutritionDeficiencyRepository.findAll());
         return (List<NutritionDeficiencyModel>) nutritionDeficiencyRepository.findAll();
     }
 }

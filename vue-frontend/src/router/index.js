@@ -10,11 +10,9 @@ const routes = [
   {
     path: '/symptomlist',
     name: 'SymptomList',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../components/NutritionDeficiency.vue')
-  }
+  },
+  { name: 'nutrients', path: '/symptomlist/:symptom', component:  () => import("../components/Nutrients.vue")},
 ]
 
 const router = createRouter({
