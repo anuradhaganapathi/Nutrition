@@ -1,5 +1,5 @@
 <template>
-    <div class = "container">
+    <div ref = "content">
 
             <h1 class = "text-center"> Nutrients List </h1>
 
@@ -18,9 +18,12 @@
                            </tbody>
                        </table>
         </div>
+
+        <button @click="download">Download PDF</button>
 </template>
 
 <script>
+import html2pdf from 'html2pdf.js';
 import SymptomService from '../services/SymptomService';
 export default {
     name: 'Nutrients',
@@ -37,7 +40,17 @@ export default {
             console.log("Response", response.data);
                 this.nutrients = response.data;
             });
-        }
+        },
+        download() {
+            console.log("Enters here");
+            html2pdf(this.$refs.content, {
+                margin: 1,
+                filename: 'document.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { dpi: 192, letterRendering: true },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'landscape' }
+            })
+        },
     },
     created() {
         this.symptomlist = this.$route.query.symptom;
